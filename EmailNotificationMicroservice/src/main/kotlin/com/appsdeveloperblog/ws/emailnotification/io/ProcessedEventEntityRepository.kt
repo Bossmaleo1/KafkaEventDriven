@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ProcessedEventEntityRepository : JpaRepository<ProcessedEventEntity, Long> {
+    fun findByMessageId(messageId: String): ProcessedEventEntity?
 }

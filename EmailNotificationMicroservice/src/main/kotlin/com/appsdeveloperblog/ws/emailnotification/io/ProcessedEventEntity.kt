@@ -1,39 +1,47 @@
 package com.appsdeveloperblog.ws.emailnotification.io
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
+import lombok.*
 import java.io.Serializable
 import java.math.BigDecimal
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "processed_events")
-class ProcessedEventEntity: Serializable {
-
+data class ProcessedEventEntity(
     @Id
     @GeneratedValue
-    var id: Long? = null
-
+    @Column(unique = true)
+    val id: Long? = null,
     @Column(nullable = false, unique = true)
-    var messageId: String? = null
+    val messageId: String? = null,
     @Column(nullable = false)
-    var productId: String? = null
+    val productId: String? = null,
+): Serializable
 
-    constructor() {}
 
-    constructor(id: Long?, messageId: String?, productId: String?) {
-        this.id = id
-        this.messageId = messageId
-        this.productId = productId
-    }
 
-    companion object {
-        /**
-         *
-         */
-        private const val serialVersionUID = -227264951080660124L
-    }
 
-}
+
+
+
+
+/*@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "employees")
+data class Employee (
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long,
+    val firstName: String,
+    val lastName: String,
+    @Column(nullable = false, unique = true)
+    val email: String,
+    val departmentCode: String,
+    val organizationCode: String
+)*/
